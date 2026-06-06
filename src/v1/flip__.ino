@@ -31,7 +31,7 @@ float FLIP_BLENDING = 0.95;            // FLIP/PIC 混合系数 (0=PIC, 1=FLIP)
 
 // 粒子（拉格朗日视角）
 struct Particle {
-  float x, y;        // 位置（连续坐标）
+  float x, y;        // 位置
   float u, v;        // 速度
 };
 
