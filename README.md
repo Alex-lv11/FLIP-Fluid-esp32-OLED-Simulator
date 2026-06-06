@@ -28,6 +28,7 @@ Open the project’s .ino source file; select board option ESP32-WROOM-DA Module
 ## License
 MIT License
 
+## FLIP-Fluid-esp32-OLED-Simulator
 ESP32实现FLIP粒子流体模拟算法 128×64 I2C OLED屏幕实时渲染 常规帧率30FPS+ 无渲染最高可达60FPS
 ESP8266也可实现 只是帧率较低
 ## 硬件清单
