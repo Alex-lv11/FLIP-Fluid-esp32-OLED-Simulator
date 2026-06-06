@@ -37,7 +37,7 @@ struct Particle {
 
 Particle particles[NUM_PARTICLES];
 
-// 交错网格 MAC (Marker And Cell)
+// 交错网格 MAC
 // 速度存储在格子边缘
 struct MACGrid {
   float u[ROWS][COLS+1];      // x方向速度，存储在左右边缘 (i+0.5, j)
