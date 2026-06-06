@@ -18,6 +18,8 @@ The left 64×64 area renders liquid particles
 The right side displays the particle count and gravity direction in real time
 Particles are drawn using 2×2 pixels
 
+## FLIP 流体模拟器 V1.0 - 初始原型
+
 初代基础版 | 16x16 网格 | ESP32 + SSD1306 OLED
 这是项目的第一个完整可运行版本 基于 FLIP（Fluid-Implicit-Particle）流体算法实现 专为 ESP32 单片机 + 0.96 寸 I2C OLED（128×64）设计
 
