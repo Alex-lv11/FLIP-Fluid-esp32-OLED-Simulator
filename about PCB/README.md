@@ -1,4 +1,53 @@
 ## FLIP Fluid Simulator
+Based on ESP32-S3 SuperMini four-layer PCB design, using a 20×25×5 soft-pack lithium battery
+
+## Project Overview
+Currently, only **hardware PCB-related design files** are available. Firmware code is stored merely as a supporting resource and has not yet been modified for adaptation to this board's hardware.
+The overall hardware main control is upgraded to **ESP32-S3 SuperMini**, paired with an MPU6050 six-axis sensor to achieve shake-to-wake functionality. Two HT16K33 chips drive 216 0402 LED matrixes, powered by a 3.7V soft-pack lithium battery, with built-in charging and voltage regulation circuits. Two four-layer PCBs are designed, with half-holes at the board edges supporting dual-board stacking and soldering. An option for a silkscreen-free minimalist appearance is available, focusing on long battery life and wake-on-motion scenarios.
+
+Currently, the PCB is only theoretically designed and has not undergone physical soldering, power-on, or functionality testing. Existing firmware code only supports the OLED screen. Matrix drive adaptation and debugging will be carried out after hardware prototyping and soldering are completed.
+
+## Core Hardware Features
+1. Main Controller: ESP32-S3 SuperMini, supporting deep sleep and RTC external interrupt wake-up.
+2. Motion Detection: MPU6050 six-axis accelerometer and gyroscope, hardware INT interrupt enables low-power standby wake-up.
+3. Display Driver: Dual HT16K33A driving 216 0402 LED matrix, customizable animations, posture data, and fluid simulation visuals (conceptual).
+4. Power Solution: Compatible with 20×25×5mm 3.7V soft-pack lithium battery, 250mAh capacity, supports Type-C charging (may switch to magnetic charging in future), LDO regulated 3.3V output.
+5. Recommended PCB Process: 4-layer FR4 material, 1oz copper, 1mm thickness, with tin/solder mask (OSP) surface finish, half-hole structure at board edges, all silkscreen off.
+6. Low Power Design: Idle sleep only maintains low-power sensor sampling, overall static current about 160μA (theoretical), full LED matrix operates upon wake-up.
+
+## Warehouse File List
+| File | Description | File Format |
+| ---- | ---- | ---- |
+| SCH_Schematic1_2026-06-20.pdf | Complete schematic, view all circuits, pins, and power filter design | PDF |
+| BOM_Board1_PCB1_2026-06-20.xlsx | Complete bill of materials, including reference designators, quantities, packages, and component parameters | Excel |
+| PickAndPlace_PCB1_2026-06-20.csv | SMT placement coordinates file, for factory assembly production | CSV |
+| Lichuang EDA Project (.epro) | Native project source file, complete editable design of schematic + four-layer PCB | Lichuang EDA Project |
+| Gerber Project |
+| Gerber PCB Manufacturing Files (gbr/drl) | PCB production films, can be sent directly to the board manufacturer | Gerber RS-274X |
+
+
+## Work Mode Introduction
+## Sleep Mode
+When the device is idle, the ESP32 enters deep sleep. Only the MPU6050 maintains low-acceleration sampling to monitor movement. The static current of the whole device is about 160μA. With a 250mAh pouch battery, it can sleep for 40 days.
+
+## Wake-up Mode
+When a hand raise or shake motion reaches the set acceleration threshold, the MPU6050 outputs an interrupt signal to wake up the ESP32. The dot matrix screen refreshes fluid simulation and attitude data. After a period of inactivity, it automatically returns to sleep.
+
+## PCB Prototyping Recommendations
+1. Board Material: Four-layer FR4, 1oz copper thickness, uniform board thickness of 1mm.
+2. Surface Process: Prefer lead-free solder coating; half-holes offer more stable soldering; choose OSP for smooth pads.
+3. Design Process Parameters: Minimum trace/space 4mil, via inner diameter 0.2mm, outer diameter 0.45mm, board edge half-holes for panel stacking alignment.
+4. Optional: Turn off top layer; all silkscreen on bottom layer to achieve a pure white minimalist appearance.
+
+## Supplementary Notes
+1. The PCB only completes theoretical design and has not undergone physical soldering, power-on, or functional testing. There is room for circuit and layout optimization.
+2. The main control solution uses the ESP32-S3 SuperMini development board, supporting floating-point operations and low power consumption.
+3. Battery selection: 20×25×5 pouch lithium battery with 250mAh, balancing overall size and endurance. For longer endurance, a larger pouch battery can be used.
+4. Engineering files have passed DRC rule checks: no short circuits, trace width, or via process violations. Can be prototyped directly for free.
+5. The warehouse primarily contains hardware PCB projects. Firmware is only stored for reference; firmware-related optimizations are not covered in this hardware document.
+
+
+## FLIP Fluid Simulator
 基于 ESP32-S3 SuperMini 四层PCB设计 使用20×25×5软包锂电池
 
 ## 项目简介
